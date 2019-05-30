@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { setNewsDataAction } from '../../store/action/coins-action.js';
 
 import TableHeaderComponent from '../tableHeader/index.jsx';
 import TableBodyComponent from '../tableBody/index.jsx';
@@ -6,15 +10,12 @@ import TableBodyComponent from '../tableBody/index.jsx';
 class TableContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            coins: []
-        };
 
         this.updateCoinsPrice = this.updateCoinsPrice.bind(this);
     };
 
     updateCoinsPrice(msg) {
-        const { coins } = this.state;
+        const { coins } = this.props;
 
         // Парсит данные в объект
         const newData = JSON.parse(msg.data);
@@ -30,9 +31,8 @@ class TableContainer extends React.Component {
         }
         // Создает массив данных
         const newCoins = Object.values(coinsToObj);
-        this.setState({
-            coins: newCoins
-        })
+
+        this.props.setNewsDataAction(newCoins)
     }
 
     componentDidMount() {
@@ -42,9 +42,7 @@ class TableContainer extends React.Component {
             .then(data => {
                 const newCoins = data.data;
 
-                this.setState({
-                    coins: newCoins
-                })
+                this.props.setNewsDataAction(newCoins)
 
                 const socketIds = newCoins.reduce((acc, coin) => {
                     return acc +`${coin.id},`
@@ -61,7 +59,7 @@ class TableContainer extends React.Component {
     }
 
     render() {
-        const { coins } = this.state;
+        const { coins } = this.props;
         return (
             <React.Fragment>
                 <div className='coins-table-wrapper'>
@@ -75,4 +73,20 @@ class TableContainer extends React.Component {
     }
 }
 
-export default TableContainer;
+const mapStateToProps = state => {
+    return {
+      coins: state.coinsReducer.coins
+    };
+};
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators({
+        setNewsDataAction: setNewsDataAction
+    },
+    dispatch
+);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TableContainer);
