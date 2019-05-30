@@ -2,6 +2,8 @@ import React from 'react';
 
 import './index.css';
 
+import TableContainer from './table/index.jsx';
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -10,7 +12,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <span>1234</span>
+                <TableContainer />
             </div>
         )
     }
