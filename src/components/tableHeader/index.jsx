@@ -2,8 +2,8 @@ import React from 'react';
 
 function TableHeaderComponent() {
     return(
-        <thead>
-            <tr className='coins-table__header'>
+        <thead className='coins-table__header'>
+            <tr className='coins-table__header-row'>
                 <th className="coins-table__cell align-left">Название</th>
                 <th className="coins-table__cell align-right">Стоимость</th>
                 <th className="coins-table__cell coins-table__cell--mobile-none">Рыночная капитализация</th>

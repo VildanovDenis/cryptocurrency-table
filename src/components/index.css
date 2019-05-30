@@ -3,14 +3,13 @@
     min-width: 920px;
     width: 100%;
     max-width: 1100px;
-    padding: 0 15px;
     margin: 0 auto;
     overflow: hidden;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.3);
 }
-.coins-table-wrapper:hover {
-    overflow-y: auto;
-} 
 .coins-table {
+    display: block;
+    position: relative;
     max-width: 100%;
     width: 100%;
     min-width: 900px;
@@ -23,16 +22,32 @@
 .align-right {
     text-align: right;
 }
-.coins-table__header {
-    /* display: none; */
+.coins-table__header-row {
+    display: flex;
+    width: 100%;
     height: 36px;
     background-color: rgba(0,0,0,.05)
 }
+.coins-table__header, .coins-table__tbody {
+    display: block;
+    width: 100%;
+}
 .coins-table__tbody {
-    /* display: block; */
+    height: 400px;
+    overflow: hidden;
+}
+.coins-table__tbody:hover {
+    overflow-y: overlay;
+}
+.coins-table__row-content {
+    display: flex;
     width: 100%;
 }
 .coins-table__cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25%;
     padding: 10px;
     border-bottom: 1px solid lightgray;
 }
@@ -48,7 +63,7 @@
 .coins-table__row-content:hover {
     background-color: rgba(0,0,0,.05)
 }
-@media (min-width: 320px) and (max-width: 950px) {
+@media (min-width: 320px) and (max-width: 920px) {
     .coins-table-wrapper {
         min-width: 320px;
         width: 100%;
@@ -56,11 +71,18 @@
         height: auto;
         padding: 0px;
         margin: 0 auto;
-        overflow: visible;
+        box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
     }
     .coins-table {
         width: 100%;
         min-width: auto;
+    }
+    .coins-table__tbody {
+        height: auto;
+    }
+    .coins-table__cell {
+        /* width: 50%; */
+        flex-grow: 1;
     }
     .coins-table__cell--mobile-none {
         display: none;
