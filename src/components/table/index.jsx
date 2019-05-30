@@ -40,10 +40,14 @@ class TableContainer extends React.Component {
     render() {
         const { coins } = this.state;
         return (
-            <table className='coins-table'>
-                <TableHeaderComponent />
-                <TableBodyComponent coins={coins}/>
-            </table>
+            <React.Fragment>
+                <div className='coins-table-wrapper'>
+                    <table className='coins-table'>
+                        <TableHeaderComponent />
+                        <TableBodyComponent coins={coins}/>
+                    </table>
+                </div>
+            </React.Fragment>
         )
     }
 }

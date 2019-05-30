@@ -2,7 +2,7 @@ import React from 'react';
 
 function TableBodyComponent({coins}) {
     return (
-        <tbody>
+        <tbody className='coins-table__tbody'>
             {coins.map(coin => {
                 const {id, name, symbol, priceUsd, marketCapUsd, volumeUsd24Hr} = coin;
 
@@ -21,9 +21,9 @@ function TableBodyComponent({coins}) {
                             {name}
                             <span className="f12">{symbol}</span>
                         </td>
-                        <td className='coins-table__cell'>${price}</td>
-                        <td className='coins-table__cell'>${marketCap} млрд.</td>
-                        <td className='coins-table__cell'>${volume} млрд.</td>
+                        <td className='coins-table__cell align-right '>${price}</td>
+                        <td className='coins-table__cell coins-table__cell--mobile-none'>${marketCap} млрд.</td>
+                        <td className='coins-table__cell coins-table__cell--mobile-none'>${volume} млрд.</td>
                     </tr>
                 )}
             )}
