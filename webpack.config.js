@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    app: "./src/index.jsx"
+    app: "./src/index.js"
   },
   devtool: "inline-source-map",
   devServer: {
@@ -21,6 +21,10 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       }
     ]
   },
