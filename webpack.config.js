@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: {
-    app: "./src/index.js"
+    app: "./src/index.jsx"
   },
   devtool: "inline-source-map",
   devServer: {
@@ -21,17 +21,16 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
       }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/"
+    publicPath: "./"
   },
   plugins: [
     new HtmlWebpackPlugin({
